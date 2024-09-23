@@ -1,0 +1,19 @@
+FROM node:16-bookworm-slim
+
+EXPOSE 5000
+
+ENV REACT_APP_BACKEND_URL=http://localhost:8080
+
+WORKDIR /app
+
+COPY ./material-applications/example-frontend/package*.json .
+
+RUN npm install && npm install -g serve
+
+COPY ./material-applications/example-frontend .
+
+RUN npm run build
+
+CMD ["serve", "-s", "-l", "5000", "build"]
+
+# docker build -t front -f Dockerfile-1.14-front . && docker run -d -p 127.0.0.1:5000:5000 front

@@ -1,0 +1,4 @@
+# Entered password "basics"
+# The output following that:
+# You found the correct password. Secret message is:
+# "This is the secret message"

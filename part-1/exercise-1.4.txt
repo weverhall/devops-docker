@@ -1,0 +1,4 @@
+docker run -it ubuntu sh -c "apt update && apt install curl -y && while true; do echo 'Input website:'; read website; echo 'Searching..'; sleep 1; curl http://\$website; done"
+
+# Ran container based on Ubuntu image with -it flag and sh shell in order to enter the container right away
+# Solved the problem of not having curl by including command "apt update && apt install curl -y" before the while loop string

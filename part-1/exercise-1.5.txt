@@ -1,0 +1,5 @@
+devopsdockeruh/simple-web-service   ubuntu    4e3362e907d5   3 years ago     83MB
+devopsdockeruh/simple-web-service   alpine    fd312adc88e0   3 years ago     15.7MB
+
+# Alpine image is less than 1/5 of the size of the Ubuntu image!
+# Secret message functionality seems to be the same
