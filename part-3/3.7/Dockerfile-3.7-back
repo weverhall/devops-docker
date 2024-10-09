@@ -1,0 +1,28 @@
+FROM golang:1.16-alpine AS builder
+
+EXPOSE 8080
+
+ENV REQUEST_ORIGIN=http://localhost:5000
+
+WORKDIR /app
+
+COPY ./material-applications/example-backend .
+
+RUN go build -o server
+
+
+FROM alpine:3.20
+
+WORKDIR /app
+
+COPY --from=builder /app/server /app/server
+
+RUN adduser -D nonrootuser && chown -R nonrootuser:nonrootuser .
+
+USER nonrootuser
+
+CMD ["./server"]
+
+# Image size for Dockerfile-3.5-back: 447MB
+# Image size for this Dockerfile: 26MB
+# Already used "FROM node..." "FROM golang..." in the previous exercises

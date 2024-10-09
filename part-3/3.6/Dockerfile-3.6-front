@@ -1,0 +1,33 @@
+FROM node:16-bookworm-slim AS builder
+
+EXPOSE 5000
+
+ENV REACT_APP_BACKEND_URL=http://localhost:8080
+
+WORKDIR /app
+
+COPY ./material-applications/example-frontend/package*.json ./
+
+RUN npm install
+
+COPY ./material-applications/example-frontend ./
+
+RUN npm run build
+
+
+FROM node:16-bookworm-slim
+
+WORKDIR /app
+
+COPY --from=builder /app/build /app/build
+
+RUN npm install -g serve
+
+RUN useradd nonrootuser && chown -R nonrootuser:nonrootuser /app/build
+
+USER nonrootuser
+
+CMD ["serve", "-s", "-l", "5000", "build"]
+
+# Image size for Dockerfile-3.5-front: 556MB
+# Image size for this Dockerfile: 197MB
