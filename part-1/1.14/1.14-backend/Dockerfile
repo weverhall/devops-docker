@@ -12,4 +12,4 @@ RUN go build
 
 CMD ./server
 
-# docker build -t back -f Dockerfile-1.14-back . && docker run -d -p 127.0.0.1:8080:8080 back
+# docker build -t back -f Dockerfile . && docker run -d -p 127.0.0.1:8080:8080 back

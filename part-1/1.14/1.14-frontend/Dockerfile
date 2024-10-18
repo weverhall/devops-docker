@@ -16,4 +16,4 @@ RUN npm run build
 
 CMD ["serve", "-s", "-l", "5000", "build"]
 
-# docker build -t front -f Dockerfile-1.14-front . && docker run -d -p 127.0.0.1:5000:5000 front
+# docker build -t front -f Dockerfile . && docker run -d -p 127.0.0.1:5000:5000 front
